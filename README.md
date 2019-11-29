@@ -53,6 +53,8 @@
     - [Additional Options](#additional-options)
     - [Instance Utils](#instance-utils)
     - [Static Types and Utils](#static-types-and-utils)
+      - [Glob source](#glob-source)
+      - [URL source](#url-source)
 - [Development](#development)
   - [Testing](#testing)
 - [Contribute](#contribute)
@@ -362,6 +364,8 @@ Aside from the default export, `ipfs-http-client` exports various types and util
 - [`multicodec`](https://www.npmjs.com/package/multicodec)
 - [`multihash`](https://www.npmjs.com/package/multihashes)
 - [`CID`](https://www.npmjs.com/package/cids)
+- [`globSource`](https://github.com/ipfs/js-ipfs-utils/blob/master/src/files/glob-source.js) (not available in the browser)
+- [`urlSource`](https://github.com/ipfs/js-ipfs-utils/blob/master/src/files/url-source.js)
 
 These can be accessed like this, for example:
 
@@ -369,6 +373,74 @@ These can be accessed like this, for example:
 const { CID } = require('ipfs-http-client')
 // ...or from an es-module:
 import { CID } from 'ipfs-http-client'
+```
+
+##### Glob source
+
+A utility to allow files on the file system to be easily added to IPFS.
+
+###### `globSource(path, [options])`
+
+- `path`: A path to a single file or directory to glob from
+- `options`: Optional options
+- `options.recursive`: If `path` is a directory, use option `{ recursive: true }` to add the directory and all its sub-directories.
+- `options.ignore`: To exclude file globs from the directory, use option `{ ignore: ['ignore/this/folder/**', 'and/this/file'] }`.
+- `options.hidden`: Hidden/dot files (files or folders starting with a `.`, for example, `.git/`) are not included by default. To add them, use the option `{ hidden: true }`.
+
+Returns an async iterable that yields `{ path, content }` objects suitable for passing to `ipfs.add`.
+
+###### Example
+
+```js
+const IpfsHttpClient = require('ipfs-http-client')
+const { globSource } = IpfsHttpClient
+const ipfs = IpfsHttpClient()
+
+for await (const file of ipfs.add(globSource('./docs', { recursive: true }))) {
+  console.log(file)
+}
+/*
+{
+  path: 'docs/assets/anchor.js',
+  hash: 'QmVHxRocoWgUChLEvfEyDuuD6qJ4PhdDL2dTLcpUy3dSC2',
+  size: 15347
+}
+{
+  path: 'docs/assets/bass-addons.css',
+  hash: 'QmPiLWKd6yseMWDTgHegb8T7wVS7zWGYgyvfj7dGNt2viQ',
+  size: 232
+}
+...
+*/
+```
+
+##### URL source
+
+A utility to allow content from the internet to be easily added to IPFS.
+
+###### `urlSource(url)`
+
+- `url`: A string URL or [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) instance to send HTTP GET request to
+
+Returns an async iterable that yields `{ path, content }` objects suitable for passing to `ipfs.add`.
+
+###### Example
+
+```js
+const IpfsHttpClient = require('ipfs-http-client')
+const { urlSource } = IpfsHttpClient
+const ipfs = IpfsHttpClient()
+
+for await (const file of ipfs.add(urlSource('https://ipfs.io/images/ipfs-logo.svg'))) {
+  console.log(file)
+}
+/*
+{
+  path: 'ipfs-logo.svg',
+  hash: 'QmTqZhR6f7jzdhLgPArDPnsbZpvvgxzCZycXK7ywkLxSyU',
+  size: 3243
+}
+*/
 ```
 
 ## Development

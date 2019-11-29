@@ -6,12 +6,12 @@ const multiaddr = require('multiaddr')
 const multibase = require('multibase')
 const multicodec = require('multicodec')
 const multihash = require('multihashes')
+const globSource = require('ipfs-utils/src/files/glob-source')
+const urlSource = require('./lib/url-source') // TODO: move to ipfs-utils
 
 function ipfsClient (config) {
   return {
     add: require('./add')(config),
-    addFromFs: require('./add-from-fs')(config),
-    addFromURL: require('./add-from-url')(config),
     bitswap: require('./bitswap')(config),
     block: require('./block')(config),
     bootstrap: require('./bootstrap')(config),
@@ -46,6 +46,6 @@ function ipfsClient (config) {
   }
 }
 
-Object.assign(ipfsClient, { Buffer, CID, multiaddr, multibase, multicodec, multihash })
+Object.assign(ipfsClient, { Buffer, CID, multiaddr, multibase, multicodec, multihash, globSource, urlSource })
 
 module.exports = ipfsClient
