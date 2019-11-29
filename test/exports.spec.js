@@ -1,7 +1,6 @@
 /* eslint-env mocha, browser */
 'use strict'
 
-const isIPFS = require('is-ipfs')
 const CID = require('cids')
 const multiaddr = require('multiaddr')
 const multibase = require('multibase')
@@ -13,7 +12,6 @@ const IpfsHttpClient = require('../')
 
 describe('exports', () => {
   it('should export the expected types and utilities', () => {
-    expect(IpfsHttpClient.isIPFS).to.equal(isIPFS)
     expect(IpfsHttpClient.Buffer).to.equal(Buffer)
     expect(IpfsHttpClient.CID).to.equal(CID)
     expect(IpfsHttpClient.multiaddr).to.equal(multiaddr)

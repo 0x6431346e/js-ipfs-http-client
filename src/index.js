@@ -1,6 +1,5 @@
 'use strict'
 
-const isIPFS = require('is-ipfs')
 const { Buffer } = require('buffer')
 const CID = require('cids')
 const multiaddr = require('multiaddr')
@@ -47,6 +46,6 @@ function ipfsClient (config) {
   }
 }
 
-Object.assign(ipfsClient, { isIPFS, Buffer, CID, multiaddr, multibase, multicodec, multihash })
+Object.assign(ipfsClient, { Buffer, CID, multiaddr, multibase, multicodec, multihash })
 
 module.exports = ipfsClient

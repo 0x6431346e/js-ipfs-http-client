@@ -382,12 +382,11 @@ Call this on your client instance to return an object containing the `host`, `po
 
 Aside from the default export, `ipfs-http-client` exports various types and utilities that are included in the bundle:
 
-- [`isIPFS`](https://www.npmjs.com/package/is-ipfs)
 - [`Buffer`](https://www.npmjs.com/package/buffer)
 - [`multiaddr`](https://www.npmjs.com/package/multiaddr)
 - [`multibase`](https://www.npmjs.com/package/multibase)
 - [`multicodec`](https://www.npmjs.com/package/multicodec)
-- [`multihash`](https://www.npmjs.com/package/multihash)
+- [`multihash`](https://www.npmjs.com/package/multihashes)
 - [`CID`](https://www.npmjs.com/package/cids)
 
 These can be accessed like this, for example:
