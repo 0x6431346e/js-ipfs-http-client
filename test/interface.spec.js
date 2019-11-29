@@ -2,7 +2,7 @@
 'use strict'
 
 const tests = require('interface-ipfs-core')
-const isNode = require('detect-node')
+const { isNode } = require('ipfs-utils/src/env')
 const CommonFactory = require('./utils/interface-common-factory')
 const isWindows = process.platform && process.platform === 'win32'
 
