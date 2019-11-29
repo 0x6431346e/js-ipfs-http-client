@@ -48,7 +48,6 @@
     "cids": "~0.7.1",
     "debug": "^4.1.0",
     "err-code": "^2.0.0",
-    "explain-error": "^1.0.4",
     "form-data": "^3.0.0",
     "ipfs-block": "~0.8.1",
     "ipfs-utils": "github:ipfs/js-ipfs-utils#refactor/async-iterators",
@@ -78,11 +77,13 @@
     "go-ipfs-dep": "^0.4.22",
     "interface-ipfs-core": "^0.123.0",
     "ipfsd-ctl": "^0.47.1",
-    "ndjson": "^1.5.0",
+    "it-all": "^1.0.1",
+    "it-concat": "^1.0.0",
+    "it-pipe": "^1.1.0",
     "nock": "^11.4.0",
+    "pipe": "^1.1.0",
     "promisify-es6": "^1.0.3",
     "pull-stream": "^3.6.14",
-    "pump": "^3.0.0",
     "stream-equal": "^1.1.1"
   },
   "engines": {

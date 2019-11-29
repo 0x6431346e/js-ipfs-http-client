@@ -6,7 +6,7 @@ const isNode = require('detect-node')
 const CommonFactory = require('./utils/interface-common-factory')
 const isWindows = process.platform && process.platform === 'win32'
 
-describe('interface-ipfs-core tests', () => {
+describe.skip('interface-ipfs-core tests', () => {
   const defaultCommonFactory = CommonFactory.createAsync()
 
   tests.bitswap(defaultCommonFactory, {
